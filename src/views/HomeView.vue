@@ -10,11 +10,11 @@
     :navigation="true"
     :modules="modules"
   >
-    <swiper-slide data-hash="Slide1">Slide 1</swiper-slide>
+    <swiper-slide data-hash="Front"><front-page></front-page></swiper-slide>
     <swiper-slide data-hash="Slide2">Slide 2</swiper-slide>
     <swiper-slide data-hash="Slide3">Slide 3</swiper-slide>
     <swiper-slide data-hash="Slide4">Slide 4</swiper-slide>
-    <swiper-slide data-hash="Slide5">Slide 5</swiper-slide>
+    <swiper-slide data-hash="End">Slide 5</swiper-slide>
   </swiper>
 </template>
 
@@ -24,12 +24,14 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Mousewheel, Pagination, Navigation } from "swiper";
+import FrontPage from "@/components/FrontPage.vue";
 
 export default {
   name: "HomeView",
   components: {
     Swiper,
     SwiperSlide,
+    FrontPage,
   },
   setup() {
     return {
@@ -53,7 +55,7 @@ export default {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: #f6f6f6;
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -88,5 +90,10 @@ export default {
 .swiper-pagination-bullet-active {
   color: #fff;
   background: #007aff;
+}
+.content-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
