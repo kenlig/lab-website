@@ -1,4 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)"
+    "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+    "files.eol": "\n"
 }

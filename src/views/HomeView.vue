@@ -1,20 +1,20 @@
 <template>
   <swiper
     :direction="'vertical'"
-    :mousewheel="true"
-    :slidesPerView="1"
     :pagination="pagination"
     :hashNavigation="{
       watchState: true,
     }"
-    :navigation="true"
+    :mousewheel="true"
+    :slidesPerView="1"
     :modules="modules"
   >
     <swiper-slide data-hash="Front"><front-page></front-page></swiper-slide>
-    <swiper-slide data-hash="Slide2">Slide 2</swiper-slide>
-    <swiper-slide data-hash="Slide3">Slide 3</swiper-slide>
-    <swiper-slide data-hash="Slide4">Slide 4</swiper-slide>
-    <swiper-slide data-hash="End">Slide 5</swiper-slide>
+    <swiper-slide data-hash="Study"></swiper-slide>
+    <swiper-slide data-hash="Teacher" class="swiper-no-swiping"></swiper-slide>
+    <swiper-slide data-hash="Techs"></swiper-slide>
+    <swiper-slide data-hash="Lab">Lab</swiper-slide>
+    <swiper-slide data-hash="End"><end-page></end-page></swiper-slide>
   </swiper>
 </template>
 
@@ -25,6 +25,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Mousewheel, Pagination, Navigation } from "swiper";
 import FrontPage from "@/components/FrontPage.vue";
+import EndPage from "@/components/EndPage.vue";
 
 export default {
   name: "HomeView",
@@ -32,6 +33,7 @@ export default {
     Swiper,
     SwiperSlide,
     FrontPage,
+    EndPage,
   },
   setup() {
     return {

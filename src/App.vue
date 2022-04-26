@@ -18,4 +18,11 @@ body {
   margin: 0;
   padding: 0;
 }
+html::-webkit-scrollbar {
+  display: none;
+}
+html {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 </style>
