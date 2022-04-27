@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="m-page-container">
     <img :src="bgImage" class="m-content-bg s-blur" />
     <div class="m-card-container" :class="{ 'a-slide-x': slideX }">
-      <v-card width="344" elevation="5">
+      <v-card max-width="344" elevation="5">
         <v-img :src="ctImage" height="200px" class="m-card-image"></v-img>
 
         <v-card-title> 配备设备 </v-card-title>
@@ -68,15 +68,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.m-page-container {
+  height: 100%;
+  width: 100%;
+}
 .m-card-container {
   display: flex;
   align-items: center;
   position: absolute;
-  left: -20em;
+  left: -20%;
   transition: left 0.5s cubic-bezier(0.21, 0.7, 0.46, 1.01) 0s;
   top: 0;
   height: 100%;
+  width: 100%;
   text-align: left;
 }
 .v-card--reveal {
@@ -94,6 +99,15 @@ export default {
   border-radius: 4px 4px 0 0;
 }
 .a-slide-x {
-  left: 10em;
+  left: 15%;
+}
+@media screen and (max-width: 806px) {
+  .m-card-container {
+    left: -50%;
+    justify-content: center;
+  }
+  .a-slide-x {
+    left: 0;
+  }
 }
 </style>

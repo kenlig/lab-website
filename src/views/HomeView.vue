@@ -1,23 +1,24 @@
 <template>
   <swiper
     :direction="'vertical'"
-    :pagination="pagination"
+    :pagination="{
+      clickable: true,
+    }"
     :hashNavigation="{
       watchState: true,
     }"
     :mousewheel="true"
     :slidesPerView="1"
     :modules="modules"
+    @slideChange="watchChange"
   >
     <swiper-slide data-hash="Front"><front-page></front-page></swiper-slide>
     <swiper-slide data-hash="Study">研究方向</swiper-slide>
-    <swiper-slide data-hash="Teacher" class="swiper-no-swiping"
-      >老师介绍</swiper-slide
-    >
+    <swiper-slide data-hash="Teacher">老师介绍</swiper-slide>
     <swiper-slide data-hash="Techs">前后端,客户端运维</swiper-slide>
     <swiper-slide data-hash="Equip"><equip-page></equip-page></swiper-slide>
     <swiper-slide data-hash="Lab">Lab:书架,FPGA板子,地址</swiper-slide>
-    <swiper-slide data-hash="End"><end-page></end-page></swiper-slide>
+    <return-top :show="showReturnTop"></return-top>
   </swiper>
 </template>
 
@@ -29,7 +30,7 @@ import "swiper/css/pagination";
 import { Mousewheel, Pagination, Navigation } from "swiper";
 import FrontPage from "@/components/FrontPage.vue";
 import EquipPage from "@/components/EquipPage.vue";
-import EndPage from "@/components/EndPage.vue";
+import ReturnTop from "@/components/common/ReturnTop.vue";
 
 export default {
   name: "HomeView",
@@ -38,20 +39,28 @@ export default {
     SwiperSlide,
     FrontPage,
     EquipPage,
-    EndPage,
+    ReturnTop,
   },
   setup() {
     return {
       modules: [Mousewheel, Pagination, Navigation],
-      pagination: {
-        clickable: true,
-        // renderBullet: function (index, className) {
-        //   return '<div><span class="' + className + "></span></div>";
-        // },
-      },
     };
   },
-  mounted() {},
+  data() {
+    return {
+      showReturnTop: false, // 返回顶部按钮显示
+    };
+  },
+  methods: {
+    watchChange(swiper) {
+      if (swiper.isBeginning === false) {
+        // 首页不显示返回顶部
+        this.showReturnTop = true;
+      } else {
+        this.showReturnTop = false;
+      }
+    },
+  },
 };
 </script>
 <style>
@@ -83,6 +92,10 @@ export default {
   height: 100%;
   object-fit: cover;
 }
+.swiper-pagination {
+  background: rgb(255 255 255 / 10%);
+  border-radius: 2em;
+}
 .swiper-pagination-bullet {
   margin: 8px !important;
   width: 10px;
@@ -106,5 +119,10 @@ export default {
   top: 0;
   left: 0;
   z-index: -1;
+}
+@media screen and (max-width: 436px) {
+  .swiper-pagination {
+    display: none;
+  }
 }
 </style>
