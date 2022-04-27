@@ -1,9 +1,9 @@
 <template>
   <div>
     <img :src="bgImage" class="m-content-bg s-blur" />
-    <div class="m-position-left m-background">
-      <v-card width="344">
-        <v-img :src="ctImage" height="200px"></v-img>
+    <div class="m-card-container" :class="{ 'a-slide-x': slideX }">
+      <v-card width="344" elevation="5">
+        <v-img :src="ctImage" height="200px" class="m-card-image"></v-img>
 
         <v-card-title> 配备设备 </v-card-title>
 
@@ -40,22 +40,41 @@
 </template>
 
 <script>
+import { useSwiperSlide } from "swiper/vue";
+
 export default {
   nanme: "EquipPage",
+  setup() {
+    const swiperSlide = useSwiperSlide();
+    return {
+      swiperSlide,
+    };
+  },
   data: () => ({
     bgImage: require("@/assets/bg-equip.jpg"),
     ctImage: require("@/assets/ct-monitor.jpg"),
     show: false,
+    slideX: false,
   }),
+  watch: {
+    swiperSlide(newV, oldV) {
+      if (newV.isActive === true) {
+        this.slideX = true;
+      } else {
+        this.slideX = false;
+      }
+    },
+  },
 };
 </script>
 
 <style>
-.m-position-left {
+.m-card-container {
   display: flex;
   align-items: center;
   position: absolute;
-  left: 10em;
+  left: -20em;
+  transition: left 0.5s cubic-bezier(0.21, 0.7, 0.46, 1.01) 0s;
   top: 0;
   height: 100%;
   text-align: left;
@@ -71,6 +90,10 @@ export default {
   -webkit-filter: blur(8px);
   transform: scale(1.05);
 }
-.m-background {
+.m-card-image {
+  border-radius: 4px 4px 0 0;
+}
+.a-slide-x {
+  left: 10em;
 }
 </style>
