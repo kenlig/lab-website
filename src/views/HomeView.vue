@@ -10,10 +10,13 @@
     :modules="modules"
   >
     <swiper-slide data-hash="Front"><front-page></front-page></swiper-slide>
-    <swiper-slide data-hash="Study"></swiper-slide>
-    <swiper-slide data-hash="Teacher" class="swiper-no-swiping"></swiper-slide>
-    <swiper-slide data-hash="Techs"></swiper-slide>
-    <swiper-slide data-hash="Lab">Lab</swiper-slide>
+    <swiper-slide data-hash="Study">研究方向</swiper-slide>
+    <swiper-slide data-hash="Teacher" class="swiper-no-swiping"
+      >老师介绍</swiper-slide
+    >
+    <swiper-slide data-hash="Techs">前后端,客户端运维</swiper-slide>
+    <swiper-slide data-hash="Equip"><equip-page></equip-page></swiper-slide>
+    <swiper-slide data-hash="Lab">Lab:书架,FPGA板子,地址</swiper-slide>
     <swiper-slide data-hash="End"><end-page></end-page></swiper-slide>
   </swiper>
 </template>
@@ -25,6 +28,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Mousewheel, Pagination, Navigation } from "swiper";
 import FrontPage from "@/components/FrontPage.vue";
+import EquipPage from "@/components/EquipPage.vue";
 import EndPage from "@/components/EndPage.vue";
 
 export default {
@@ -33,6 +37,7 @@ export default {
     Swiper,
     SwiperSlide,
     FrontPage,
+    EquipPage,
     EndPage,
   },
   setup() {
@@ -93,9 +98,13 @@ export default {
   color: #fff;
   background: #007aff;
 }
-.content-bg {
+.m-content-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 </style>
