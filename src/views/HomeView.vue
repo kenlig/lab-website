@@ -14,7 +14,9 @@
   >
     <swiper-slide data-hash="Front"><front-page></front-page></swiper-slide>
     <swiper-slide data-hash="Study">研究方向</swiper-slide>
-    <swiper-slide data-hash="Teacher">老师介绍</swiper-slide>
+    <swiper-slide data-hash="Teacher"
+      ><teacher-intro></teacher-intro
+    ></swiper-slide>
     <swiper-slide data-hash="Techs">前后端,客户端运维</swiper-slide>
     <swiper-slide data-hash="Equip"><equip-page></equip-page></swiper-slide>
     <swiper-slide data-hash="Lab">Lab:书架,FPGA板子,地址</swiper-slide>
@@ -29,6 +31,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Mousewheel, Pagination, Navigation } from "swiper";
 import FrontPage from "@/components/FrontPage.vue";
+import TeacherIntro from "@/components/TeacherIntro.vue";
 import EquipPage from "@/components/EquipPage.vue";
 import ReturnTop from "@/components/common/ReturnTop.vue";
 
@@ -38,6 +41,7 @@ export default {
     Swiper,
     SwiperSlide,
     FrontPage,
+    TeacherIntro,
     EquipPage,
     ReturnTop,
   },

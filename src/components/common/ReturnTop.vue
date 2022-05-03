@@ -1,9 +1,11 @@
 <template>
-  <div class="u-icon-return" v-show="show">
-    <v-btn icon @click="returnTop" class="swiper-no-swiping" :elevation="5">
-      <v-icon>mdi-arrow-up</v-icon>
-    </v-btn>
-  </div>
+  <v-slide-y-reverse-transition>
+    <div class="u-icon-return" v-show="show">
+      <v-btn icon @click="returnTop" class="swiper-no-swiping" :elevation="5">
+        <v-icon>mdi-arrow-up</v-icon>
+      </v-btn>
+    </div>
+  </v-slide-y-reverse-transition>
 </template>
 
 <script>
