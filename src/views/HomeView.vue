@@ -19,7 +19,7 @@
     ></swiper-slide>
     <swiper-slide data-hash="Techs">前后端,客户端运维</swiper-slide>
     <swiper-slide data-hash="Equip"><equip-page></equip-page></swiper-slide>
-    <swiper-slide data-hash="Lab">Lab:书架,FPGA板子,地址</swiper-slide>
+    <swiper-slide data-hash="Lab"><lab-page></lab-page></swiper-slide>
     <return-top :show="showReturnTop"></return-top>
   </swiper>
 </template>
@@ -34,6 +34,7 @@ import FrontPage from "@/components/FrontPage.vue";
 import TeacherIntro from "@/components/TeacherIntro.vue";
 import EquipPage from "@/components/EquipPage.vue";
 import ReturnTop from "@/components/common/ReturnTop.vue";
+import LabPage from "@/components/LabPage.vue";
 
 export default {
   name: "HomeView",
@@ -44,6 +45,7 @@ export default {
     TeacherIntro,
     EquipPage,
     ReturnTop,
+    LabPage,
   },
   setup() {
     return {
