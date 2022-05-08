@@ -3,13 +3,18 @@
     <img :src="bgImage" class="m-content-bg s-blur" />
     <div class="m-card-container" :class="{ 'a-slide-x': slideX }">
       <v-card max-width="344" elevation="5">
-        <v-img :src="ctImage" height="200px" class="m-card-image"></v-img>
+        <v-img
+          :src="ctImage"
+          :lazy-src="lazyImage"
+          height="240px"
+          class="m-card-image"
+        ></v-img>
 
-        <v-card-title> 配备设备 </v-card-title>
+        <v-card-title class="font-weight-bold"> 配备设备 </v-card-title>
 
         <v-card-subtitle> 没电脑怎么学习（工作）呢 </v-card-subtitle>
-        <v-card-text>
-          实验室会给每人配一台台式机和至少一个显示器，鼠标键盘插线板等等都是有的，还有工位，以供大家在实验室学习、看论文或者做项目。
+        <v-card-text class="text-body-1 font-weight-medium">
+          实验室会给每人配一台台式机和至少一个显示器，鼠标键盘插线板等等，以供大家在实验室学习、看论文或者做项目。
         </v-card-text>
 
         <v-card-actions>
@@ -20,6 +25,7 @@
             @click="show = !show"
             v-ripple="{ class: 'success--text' }"
             style="padding: 0px"
+            class="swiper-no-swiping"
           >
             <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
           </v-btn>
@@ -51,10 +57,11 @@ export default {
     };
   },
   data: () => ({
+    lazyImage: require("@/assets/bg-dark-blur.jpg"),
     bgImage: require("@/assets/bg-equip.jpg"),
     ctImage: require("@/assets/ct-monitor.jpg"),
     show: false,
-    slideX: false,
+    slideX: true,
   }),
   watch: {
     swiperSlide(newV, oldV) {

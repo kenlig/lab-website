@@ -13,7 +13,7 @@
     @slideChange="watchChange"
   >
     <swiper-slide data-hash="Front"><front-page></front-page></swiper-slide>
-    <swiper-slide data-hash="Study">研究方向</swiper-slide>
+    <!-- <swiper-slide data-hash="Study">研究方向</swiper-slide> -->
     <swiper-slide data-hash="Teacher"
       ><teacher-intro></teacher-intro
     ></swiper-slide>
@@ -21,6 +21,7 @@
     <swiper-slide data-hash="Equip"><equip-page></equip-page></swiper-slide>
     <swiper-slide data-hash="Lab"><lab-page></lab-page></swiper-slide>
     <return-top :show="showReturnTop"></return-top>
+    <template v-slot:container-end><section>Container end</section></template>
   </swiper>
 </template>
 
