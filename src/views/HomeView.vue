@@ -20,6 +20,7 @@
     <swiper-slide data-hash="Techs">前后端,客户端运维</swiper-slide>
     <swiper-slide data-hash="Equip"><equip-page></equip-page></swiper-slide>
     <swiper-slide data-hash="Lab"><lab-page></lab-page></swiper-slide>
+    <swiper-slide data-hash="End"><end-page></end-page></swiper-slide>
     <return-top :show="showReturnTop"></return-top>
     <template v-slot:container-end><section>Container end</section></template>
   </swiper>
@@ -36,6 +37,7 @@ import TeacherIntro from "@/components/TeacherIntro.vue";
 import EquipPage from "@/components/EquipPage.vue";
 import ReturnTop from "@/components/common/ReturnTop.vue";
 import LabPage from "@/components/LabPage.vue";
+import EndPage from "@/components/EndPage.vue";
 
 export default {
   name: "HomeView",
@@ -47,6 +49,7 @@ export default {
     EquipPage,
     ReturnTop,
     LabPage,
+    EndPage,
   },
   setup() {
     return {
@@ -60,7 +63,7 @@ export default {
   },
   methods: {
     watchChange(swiper) {
-      if (swiper.isBeginning === false) {
+      if (swiper.isBeginning === false && swiper.isEnd === false) {
         // 首页不显示返回顶部
         this.showReturnTop = true;
       } else {
