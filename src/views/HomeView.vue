@@ -63,7 +63,8 @@ export default {
   },
   methods: {
     watchChange(swiper) {
-      if (swiper.isBeginning === false && swiper.isEnd === false) {
+      if (swiper.isBeginning === false) {
+        // && swiper.isEnd === false
         // 首页不显示返回顶部
         this.showReturnTop = true;
       } else {

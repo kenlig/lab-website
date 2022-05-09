@@ -65,7 +65,6 @@ export default {
   height: 500px;
   border-left: 4px solid white;
   transform: skew(-10deg) translate(100px, 0);
-  transition: transform 0.2s ease 0.1s;
   overflow: hidden;
 }
 .m-skew {
@@ -73,7 +72,7 @@ export default {
   background-color: rgb(0 0 0 / 70%);
   box-shadow: 3px 3px 8px 2px rgb(0 0 0 / 36%);
   transition-property: padding, height, width, transform;
-  transition-duration: 0.1s;
+  transition-duration: 0.2s;
   transition-timing-function: ease;
 }
 .m-teacher-intro:hover {
