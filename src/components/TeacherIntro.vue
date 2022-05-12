@@ -49,6 +49,14 @@ export default {
   width: 100%;
   justify-content: center;
   align-items: center;
+  /* background-image: linear-gradient(
+      90deg,
+      rgba(72, 42, 10, 0.05) 5%,
+      rgba(72, 42, 10, 0) 0
+    ),
+    linear-gradient(1turn, rgba(72, 42, 10, 0.05) 5%, rgba(72, 42, 10, 0) 0);
+  background-size: 20px 20px;
+  background-position: 50%; */
 }
 .m-teacher-pic {
   margin-left: 4em !important;

@@ -17,7 +17,7 @@
     <swiper-slide data-hash="Teacher"
       ><teacher-intro></teacher-intro
     ></swiper-slide>
-    <swiper-slide data-hash="Techs">前后端,客户端运维</swiper-slide>
+    <!-- <swiper-slide data-hash="Techs">前后端,客户端运维</swiper-slide> -->
     <swiper-slide data-hash="Equip"><equip-page></equip-page></swiper-slide>
     <swiper-slide data-hash="Lab"><lab-page></lab-page></swiper-slide>
     <swiper-slide data-hash="End"><end-page></end-page></swiper-slide>
