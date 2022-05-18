@@ -3,6 +3,6 @@
 </template>
 <script>
 export default {
-  name: "AboutView",
+  name: "MainView",
 };
 </script>
