@@ -1,9 +1,10 @@
 {
-    "editor.formatOnSave": true,
-    "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
-    "files.eol": "\n",
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        "source.fixAll.eslint": true,
-    },
+  "editor.formatOnSave": true,
+  "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+  "files.eol": "\n",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true
+  },
+  "editor.tabSize": 2
 }

@@ -4,10 +4,10 @@
       <v-divider></v-divider>
       <v-container>
         <v-card-text class="white--text">
-          <strong
-            >College of Computer Science and Technology, Wuhan University of
-            Science and Technology<br />Hubei Province Key Laboratory of
-            Intelligent Information Processing and Real-time Industrial System
+          <strong>
+            Hubei Province Key Laboratory of<br />
+            Intelligent Information Processing and<br />
+            Real-time Industrial System
           </strong>
           <br />{{ new Date().getFullYear() }}
         </v-card-text>
