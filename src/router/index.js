@@ -26,6 +26,24 @@ const routes = [
       import(/* webpackChunkName: "course" */ "../pages/CoursePage.vue"),
   },
   {
+    path: "/team",
+    name: "team",
+    component: () =>
+      import(/* webpackChunkName: "team" */ "../pages/TeamPage.vue"),
+  },
+  {
+    path: "/research",
+    name: "research",
+    component: () =>
+      import(/* webpackChunkName: "research" */ "../pages/ResearchPage.vue"),
+  },
+  {
+    path: "/news/:id",
+    name: "project-detail",
+    component: () =>
+      import(/* webpackChunkName: "project" */ "../pages/ProjectDetail.vue"),
+  },
+  {
     path: "/life",
     name: "life",
     component: () =>
