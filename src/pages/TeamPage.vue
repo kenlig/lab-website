@@ -8,10 +8,13 @@
       class="d-flex child-flex"
       cols="3"
     >
-      <div class="m-content">
+      <div
+        class="m-content"
+        @click="linkToTeacher(index)"
+        style="cursor: pointer"
+      >
         <v-img
           :src="item.pic"
-          :lazy-src="`https://picsum.photos/10/6?image=${index * 5 + 10}`"
           aspect-ratio="1"
           class="grey lighten-2"
           cover
@@ -33,16 +36,17 @@
 </template>
 
 <script>
+import teachers from "@/data/teachers";
+
 export default {
   data: () => ({
-    teachers: [
-      {
-        name: "胡威",
-        title: "武汉科技大学教授",
-        pic: require("@/assets/teacher.jpg"),
-      },
-    ],
+    teachers,
   }),
+  methods: {
+    linkToTeacher(index) {
+      this.$router.push({ name: "teacher-detail", params: { id: index } });
+    },
+  },
 };
 </script>
 
