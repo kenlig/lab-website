@@ -21,6 +21,14 @@ export default [
         image: true,
         content: require("@/assets/ct-lab-book.jpg"),
       },
+      {
+        image: false,
+        content: `首先，实验室主任陈文智老师回顾和总结了属于ARClab的2021。在过去的一年中，实验室的科研团队进一步壮大，各方向科研工作稳步推进，同时与企业的合作项目也在有条不紊地推进之中。畅想2022，陈文智老师指出，ARClab要培养对社会有影响有帮助的学生，迈向世界一流实验室，在团结互进中共赴目标。`,
+      },
+      {
+        image: false,
+        content: `杭州安恒信息技术股份有限公司董事长范渊师兄也为ARClab送出新年寄语。希望逐步夯实与ARClab之间的合作，发挥各自所长，互帮互助、共同进步。同时祝愿ARClab未来的发展方向继续拓展延伸，朝着国际一流实验室前进。`,
+      },
     ],
   },
   {
@@ -68,6 +76,22 @@ export default [
       {
         image: true,
         content: require("@/assets/bg-test.jpg"),
+      },
+    ],
+  },
+  {
+    title: "浙江大学-安恒信息前沿技术联合研究中心正式成立",
+    date: "2021-08-09",
+    picture: require("@/assets/ct-monitor.jpg"),
+    description: `2021年8月9日，浙江大学-安恒信息前沿技术联合研究中心（下文简称“联合研究中心”）在浙江大学紫金港校区正式成立并举行揭牌仪式。浙江大学计算机系统结构实验室（ARClab）陈文智老师任联合研究中心主任，安恒信息高级副总裁刘博任常务副主任。`,
+    detail: [
+      {
+        image: false,
+        content: `2021年8月9日，浙江大学-安恒信息前沿技术联合研究中心（下文简称“联合研究中心”）在浙江大学紫金港校区正式成立并举行揭牌仪式。浙江大学计算机系统结构实验室（ARClab）陈文智老师任联合研究中心主任，安恒信息高级副总裁刘博任常务副主任。`,
+      },
+      {
+        image: true,
+        content: require("@/assets/ct-monitor.jpg"),
       },
     ],
   },

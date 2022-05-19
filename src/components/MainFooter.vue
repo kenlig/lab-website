@@ -9,7 +9,7 @@
             Intelligent Information Processing and<br />
             Real-time Industrial System
           </strong>
-          <br />{{ new Date().getFullYear() }}
+          <br />&#169;&nbsp;{{ new Date().getFullYear() }}
         </v-card-text>
       </v-container>
     </v-card>

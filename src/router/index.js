@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../pages/HomePage.vue";
-import LifePage from "../pages/LifePage.vue";
-import CoursePage from "../pages/CoursePage.vue";
+import NewsPage from "../pages/NewsPage.vue";
 import NewsDetail from "../pages/NewsDetail.vue";
 
 const routes = [
@@ -11,6 +10,11 @@ const routes = [
     component: HomePage,
   },
   {
+    path: "/news",
+    name: "news",
+    component: NewsPage,
+  },
+  {
     path: "/news/:id",
     name: "news-detail",
     component: NewsDetail,
@@ -18,12 +22,14 @@ const routes = [
   {
     path: "/course",
     name: "course",
-    component: CoursePage,
+    component: () =>
+      import(/* webpackChunkName: "course" */ "../pages/CoursePage.vue"),
   },
   {
     path: "/life",
     name: "life",
-    component: LifePage,
+    component: () =>
+      import(/* webpackChunkName: "life" */ "../pages/LifePage.vue"),
   },
   {
     path: "/join",
