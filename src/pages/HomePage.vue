@@ -37,15 +37,43 @@
         全方位的产学研合作必将推进业界和学术界相关领域的快速发展。
       </p>
     </div>
+    <div class="m-news">
+      <p style="font-size: 1.2rem"><strong>实验室动态</strong></p>
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in sliced"
+          :key="index"
+          v-ripple
+          class="m-list-item"
+          @click="linkToNews(index)"
+        >
+          <v-list-item-title>
+            <div class="m-list-date">{{ item.date }}</div>
+            {{ item.title }}
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </div>
   </div>
 </template>
 
 <script>
+import news from "@/data/news";
+
 export default {
   data: () => ({
     arc1: require("@/assets/arc/arclab-net-02.png"),
     arc2: require("@/assets/arc/arclab-net-05.png"),
+    sliced: null,
   }),
+  mounted() {
+    this.sliced = news.slice(0, 3);
+  },
+  methods: {
+    linkToNews(index) {
+      this.$router.push({ name: "news-detail", params: { id: index } });
+    },
+  },
 };
 </script>
 
@@ -67,5 +95,22 @@ export default {
   gap: 1rem;
   margin: 1rem 0 1rem 0;
   line-height: 2;
+}
+.m-list-item {
+  padding-inline-start: 0 !important;
+  padding: 0 !important;
+  cursor: pointer;
+  /* min-height: 2rem;
+  margin-bottom: 0.5rem; */
+}
+.m-list-item:hover {
+  background: #f5f5f5;
+}
+.m-list-date {
+  display: inline-block;
+  background-color: hsl(200deg 100% 50% / 80%);
+  line-height: 2rem;
+  color: white;
+  padding: 0 0.5rem 0 0.5rem;
 }
 </style>
