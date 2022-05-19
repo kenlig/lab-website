@@ -1,23 +1,25 @@
 <template>
-  <div class="m-logo">
-    <img
-      :src="arc1"
-      class="m-logo-image"
-      style="width: 37%"
-      draggable="false"
-    />
-    <img
-      :src="arc2"
-      class="m-logo-image"
-      style="width: 63%"
-      draggable="false"
-    />
-  </div>
+  <v-row class="m-logo ma-1">
+    <v-col cols="4">
+      <img
+        :src="arc1"
+        class="m-logo-image"
+        style="width: 100%"
+        draggable="false"
+      /> </v-col
+    ><v-col cols="8">
+      <img
+        :src="arc2"
+        class="m-logo-image"
+        style="width: 100%"
+        draggable="false"
+    /></v-col>
+  </v-row>
 </template>
 <script>
 export default {
   data: () => ({
-    arc1: require("@/assets/arc/arclab-net-02.png"),
+    arc1: require("@/assets/arc/wust.svg"),
     arc2: require("@/assets/arc/arclab-net-05.png"),
   }),
 };
@@ -26,8 +28,6 @@ export default {
 <style scoped>
 .m-logo {
   user-select: none;
-  display: flex;
-  justify-content: center;
   align-items: center;
 }
 </style>

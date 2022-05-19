@@ -19,5 +19,6 @@
 .m-footer {
   flex: 0 1 auto;
   width: 100%;
+  padding-bottom: 0;
 }
 </style>

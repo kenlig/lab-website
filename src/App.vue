@@ -4,10 +4,11 @@
       <v-spacer></v-spacer>
       <v-container style="padding: 0">
         <v-btn
-          class="text-body-1"
+          class="text-body-1 mr-2"
           v-for="(item, index) in routes"
           :key="index"
-          @click="changeRoute(index, item.name)"
+          @click="changeRoute(item.name)"
+          :variant="active === item.name ? 'outlined' : 'text'"
           ><span>{{ item.text }}</span></v-btn
         >
       </v-container>
@@ -26,20 +27,23 @@ export default {
   components: { MainFooter },
   name: "MainView",
   data: () => ({
-    active: null,
     routes: [
-      { text: "首页", name: "home", color: "blue lighten-2" },
-      { text: "新闻", name: "news", color: "" },
-      { text: "研究", name: "research", color: "" },
-      { text: "团队", name: "team", color: "" },
-      { text: "课程", name: "course", color: "" },
-      { text: "生活", name: "life", color: "" },
-      { text: "加入我们", name: "join", color: "" },
+      { text: "首页", name: "home" },
+      { text: "新闻", name: "news" },
+      { text: "研究", name: "research" },
+      { text: "团队", name: "team" },
+      { text: "课程", name: "course" },
+      { text: "生活", name: "life" },
+      { text: "加入我们", name: "join" },
     ],
   }),
+  computed: {
+    active() {
+      return this.$route.name || undefined;
+    },
+  },
   methods: {
-    changeRoute(index, name) {
-      this.active = index;
+    changeRoute(name) {
       this.$router.push({ name });
     },
   },

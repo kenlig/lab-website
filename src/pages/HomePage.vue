@@ -71,7 +71,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin: 1rem 0 1rem 0;
+  margin: 0.5rem 0 1rem 0;
   line-height: 2;
 }
 .m-list-item {
