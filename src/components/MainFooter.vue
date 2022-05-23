@@ -21,4 +21,9 @@
   width: 100%;
   padding-bottom: 0;
 }
+@media screen and (max-width: 360px) {
+  div strong br {
+    display: none;
+  }
+}
 </style>

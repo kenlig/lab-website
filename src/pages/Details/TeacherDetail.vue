@@ -1,6 +1,6 @@
 <template>
   <v-row class="m-container">
-    <v-col cols="3">
+    <v-col cols="12" sm="3" md="3" lg="3" xl="3">
       <div class="m-content">
         <v-img
           :src="detail.pic"
@@ -21,7 +21,7 @@
         <p class="m-text">{{ detail.name }}<br />{{ detail.title }}</p>
       </div>
     </v-col>
-    <v-col cols="9">
+    <v-col cols="12" sm="9" md="9" lg="9" xl="9" class="m-teacher-content">
       <v-card variant="contained-text" class="m-card">
         <v-card-title>简介</v-card-title>
         <v-card-text>{{ detail.profile }}</v-card-text>
@@ -68,6 +68,13 @@ export default {
 .m-text {
   padding: 0.5rem;
 }
+@media screen and (max-width: 400px) {
+  .m-teacher-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 /* 影响global 必须scoped */
 .v-card .v-card-text {
   padding-top: 0rem;

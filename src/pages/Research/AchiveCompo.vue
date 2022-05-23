@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" class="py-2">
+  <v-col cols="12" class="py-2 px-0">
     <v-btn-toggle v-model="text" tile color="deep-purple accent-3" mandatory>
       <template v-for="(item, index) in achivements" :key="index">
         <v-btn :value="item.title"> {{ item.title }} </v-btn>
@@ -12,9 +12,9 @@
             v-for="(s, index) in item.array"
             :key="index"
             v-ripple
-            class="m-list-item"
+            class="m-list-item px-0"
           >
-            <v-list-item-avatar start>
+            <v-list-item-avatar start class="mr-1">
               <v-icon icon="mdi-circle-small"></v-icon>
             </v-list-item-avatar>
             <v-list-item-title v-text="s" style="white-space: break-spaces">

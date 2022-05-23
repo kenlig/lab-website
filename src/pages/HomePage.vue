@@ -4,7 +4,7 @@
     <div class="m-text">
       <p v-for="(item, i) in text" :key="i">{{ item }}</p>
     </div>
-    <div class="m-news">
+    <!-- <div class="m-news">
       <p style="font-size: 1.2rem"><strong>实验室动态</strong></p>
       <v-list>
         <v-list-item
@@ -20,7 +20,7 @@
           </v-list-item-title>
         </v-list-item>
       </v-list>
-    </div>
+    </div> -->
   </div>
 </template>
 

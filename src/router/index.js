@@ -38,7 +38,7 @@ const routes = [
       import(/* webpackChunkName: "research" */ "../pages/ResearchPage.vue"),
   },
   {
-    path: "/news/:id",
+    path: "/project/:id",
     name: "project-detail",
     component: () =>
       import(
