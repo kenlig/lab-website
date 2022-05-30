@@ -34,7 +34,7 @@ export default {};
   text-align: center;
   margin-bottom: 16px;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   .v-col-4 {
     flex: 0 0 50%;
     max-width: 50%;

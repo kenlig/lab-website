@@ -3,7 +3,7 @@
     <v-app-bar>
       <v-app-bar-nav-icon
         @click="drawer = !drawer"
-        class="ml-2 mr-2"
+        class="ml-2 mr-2 m-nav-icon"
       ></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
@@ -22,12 +22,13 @@
 
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list nav dense>
-        <v-item-group v-model="group" selected-class="bg-primary">
+        <v-item-group max="1" :model-value="active">
           <v-list-item
             class="m-drawer-list"
             v-ripple
             v-for="(item, index) in routes"
             :key="index"
+            :active="active === item.name"
             @click="changeRoute(item.name)"
           >
             <v-list-item-avatar>
@@ -40,7 +41,7 @@
     </v-navigation-drawer>
 
     <v-main>
-      <v-container><router-view /></v-container>
+      <v-container style="height: 100%"><router-view /></v-container>
     </v-main>
     <main-footer></main-footer>
   </v-app>
@@ -53,7 +54,6 @@ export default {
   name: "MainView",
   data: () => ({
     drawer: false,
-    group: null,
     routes: [
       { text: "首页", name: "home", icon: "mdi-home" },
       // { text: "新闻", name: "news, icon: "mdi-newspaper" },
@@ -62,6 +62,7 @@ export default {
       // { text: "课程", name: "course", icon: "mdi-book-variant" },
       { text: "生活", name: "life", icon: "mdi-camera-iris" },
       { text: "加入我们", name: "join", icon: "mdi-shuriken" },
+      { text: "证书", name: "cert", icon: "mdi-certificate" },
     ],
   }),
   computed: {
@@ -81,6 +82,9 @@ export default {
   width: 100%;
   height: 100%;
 }
+.m-nav-icon {
+  display: none;
+}
 #header-routes {
   padding: 0;
 }
@@ -90,6 +94,9 @@ export default {
 @media screen and (max-width: 600px) {
   #header-routes {
     display: none;
+  }
+  .m-nav-icon {
+    display: flex;
   }
 }
 

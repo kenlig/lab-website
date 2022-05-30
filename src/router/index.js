@@ -9,6 +9,12 @@ const routes = [
     component: HomePage,
   },
   {
+    path: "/cert",
+    name: "cert",
+    component: () =>
+      import(/* webpackChunkName: "cert" */ "../pages/CertPage.vue"),
+  },
+  {
     path: "/news",
     name: "news",
     component: NewsPage,

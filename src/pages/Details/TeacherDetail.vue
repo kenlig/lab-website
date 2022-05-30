@@ -68,7 +68,7 @@ export default {
 .m-text {
   padding: 0.5rem;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   .m-teacher-content {
     padding-left: 0;
     padding-right: 0;
