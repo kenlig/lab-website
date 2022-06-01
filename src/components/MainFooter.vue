@@ -2,17 +2,18 @@
   <v-footer padless dark class="m-footer"
     ><v-card flat tile class="indigo lighten-1 white--text text-right m-footer">
       <v-divider></v-divider>
-      <v-container>
+      <v-container id="footer-container">
         <v-card-text class="white--text">
           <strong>
             Hubei Province Key Laboratory of<br />
             Intelligent Information Processing and<br />
             Real-time Industrial System
           </strong>
-          <br />&#169;&nbsp;<span
-            @dblclick="this.$router.push({ name: 'admin' })"
+          <br /><span
+            style="user-select: none"
+            @dblclick="this.$router.push({ name: 'manage' })"
           >
-            {{ new Date().getFullYear() }}
+            &#169;&nbsp;{{ new Date().getFullYear() }}
           </span>
         </v-card-text>
       </v-container>
@@ -28,6 +29,10 @@
 @media screen and (max-width: 360px) {
   div strong br {
     display: none;
+  }
+  #footer-container {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 </style>

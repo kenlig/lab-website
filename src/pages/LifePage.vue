@@ -3,7 +3,7 @@
     <h1 class="font-weight-light m-title">生活</h1>
     <v-divider style="margin-bottom: 1rem"></v-divider>
     <v-row>
-      <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
+      <v-col v-for="n in 12" :key="n" class="d-flex child-flex" cols="3">
         <v-img
           :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
           :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
@@ -35,7 +35,7 @@ export default {};
   margin-bottom: 16px;
 }
 @media screen and (max-width: 600px) {
-  .v-col-4 {
+  .v-col-3 {
     flex: 0 0 50%;
     max-width: 50%;
   }

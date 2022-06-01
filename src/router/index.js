@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../pages/HomePage.vue";
 import NewsPage from "../pages/NewsPage.vue";
+import JoinPage from "../pages/JoinPage.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: HomePage,
+  },
+  {
+    path: "/join",
+    name: "join",
+    component: JoinPage,
   },
   {
     path: "/cert",
@@ -62,17 +68,11 @@ const routes = [
   {
     path: "/life",
     name: "life",
-    component: () =>
-      import(/* webpackChunkName: "life" */ "../pages/LifePage.vue"),
-  },
-  {
-    path: "/join",
-    name: "join",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "home" */ "../pages/JoinPage.vue"),
+      import(/* webpackChunkName: "life" */ "../pages/LifePage.vue"),
   },
 ];
 

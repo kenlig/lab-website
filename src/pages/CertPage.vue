@@ -1,5 +1,6 @@
 <template>
-  <v-row align="center" class="h-100">
+  <!-- 未登录时 展示查询与登录 -->
+  <v-row align="center" class="h-100" v-if="!authorized">
     <v-col cols="12">
       <v-tabs centered v-model="tab">
         <v-tab color="teal lighten-1"> 证书查询 </v-tab>
@@ -9,7 +10,6 @@
         <v-window-item>
           <v-row justify="center" align="center">
             <v-col cols="12" class="m-col">
-              <!-- <div class="pl-1 text-body">请输入查询编号：</div> -->
               <v-text-field
                 class="mt-4"
                 label="证书编号"
@@ -17,6 +17,7 @@
                 hide-details
                 clearable
                 v-model="certID"
+                v-on:keyup.enter="submit"
               ></v-text-field>
               <v-btn
                 variant="contained-text"
@@ -31,7 +32,6 @@
         <v-window-item>
           <v-row justify="center" align="center">
             <v-col cols="12" class="m-col">
-              <!-- <div class="pl-1 text-h6">获取证书</div> -->
               <v-text-field
                 class="mt-4"
                 label="账号"
@@ -48,11 +48,13 @@
                 hide-details
                 clearable
                 v-model="passwd"
+                v-on:keyup.enter="login"
               ></v-text-field>
               <v-btn
                 variant="contained-text"
                 size="large"
                 class="float-right mt-4"
+                @click="login"
                 >登录</v-btn
               >
             </v-col>
@@ -61,6 +63,19 @@
       </v-window>
     </v-col>
   </v-row>
+  <!-- 登录状态 展示自己的证书 -->
+  <v-row justify="center" class="h-100" v-else>
+    <v-col cols="12">
+      <v-banner lines="one" style="user-select: none">
+        <v-banner-icon icon="mdi-account-circle"></v-banner-icon>
+        <template v-slot:text> 欢迎！#用户名。 </template>
+        <template v-slot:actions>
+          <v-btn @click="logout"> 登出 </v-btn>
+        </template>
+      </v-banner>
+    </v-col>
+  </v-row>
+  <!-- 查询证书成功 -->
   <v-overlay v-model="overlay" class="align-center justify-center">
     <v-progress-circular
       indeterminate
@@ -123,17 +138,32 @@ export default {
     // 登录部分
     userID: "",
     passwd: "",
+    authorized: false,
   }),
   methods: {
     submit() {
       if (this.certID) {
         this.loading = true;
-        // query backend
         this.overlay = true;
-        // after query
+        // query backend
+        // if not valid cert this.overlay = false; show alert
         this.loading = false;
       }
     },
+    login() {
+      if (this.userID && this.passwd) {
+        this.loading = true;
+        this.overlay = true;
+        // after query if valid
+        this.overlay = false;
+        this.authorized = true;
+      }
+    },
+    logout() {},
+  },
+  mounted() {
+    // if logged in:
+    // this.authorized = true;
   },
 };
 </script>
@@ -144,5 +174,9 @@ export default {
 }
 .m-col {
   max-width: 500px;
+}
+.dialog-bottom-transition-enter-active,
+.dialog-bottom-transition-leave-active {
+  transition: transform 0.2s ease-in-out;
 }
 </style>
