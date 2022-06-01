@@ -22,7 +22,7 @@
 
     <v-navigation-drawer v-model="drawer" temporary>
       <v-list nav dense>
-        <v-item-group max="1" :model-value="active">
+        <v-item-group :model-value="active">
           <v-list-item
             class="m-drawer-list"
             v-ripple

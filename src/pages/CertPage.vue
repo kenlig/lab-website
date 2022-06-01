@@ -72,8 +72,8 @@
         <v-card class="mx-auto" max-width="400px">
           <v-card-header class="pt-4">
             <v-card-header-text>
-              <v-card-title class="text-h5">
-                <v-icon color="success" size="30" class="mr-2"
+              <v-card-title>
+                <v-icon color="success" size="32" class="mr-2"
                   >mdi-check-decagram</v-icon
                 >
                 有效证书
@@ -84,7 +84,7 @@
           <v-card-text class="pb-0">
             <v-table>
               <tbody class="text-h5">
-                <tr v-for="item in details" :key="item.text">
+                <tr v-for="item in details" :key="item.text" v-ripple>
                   <td>
                     <b>{{ item.text }}</b>
                   </td>

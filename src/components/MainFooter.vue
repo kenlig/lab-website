@@ -9,7 +9,11 @@
             Intelligent Information Processing and<br />
             Real-time Industrial System
           </strong>
-          <br />&#169;&nbsp;{{ new Date().getFullYear() }}
+          <br />&#169;&nbsp;<span
+            @dblclick="this.$router.push({ name: 'admin' })"
+          >
+            {{ new Date().getFullYear() }}
+          </span>
         </v-card-text>
       </v-container>
     </v-card>
