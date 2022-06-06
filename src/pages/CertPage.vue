@@ -67,12 +67,15 @@
   <v-row justify="center" class="h-100" v-else>
     <v-col cols="12">
       <v-banner lines="one" style="user-select: none">
-        <v-banner-icon icon="mdi-account-circle"></v-banner-icon>
-        <template v-slot:text> 欢迎！#用户名。 </template>
+        <template v-slot:text>
+          <v-icon class="mr-1">mdi-account-circle</v-icon>
+          欢迎！#用户名。
+        </template>
         <template v-slot:actions>
           <v-btn @click="logout"> 登出 </v-btn>
         </template>
       </v-banner>
+      <cert-list></cert-list>
     </v-col>
   </v-row>
   <!-- 查询证书成功 -->
@@ -121,7 +124,10 @@
 </template>
 
 <script>
+import CertList from "@/components/CertList.vue";
+
 export default {
+  components: { CertList },
   data: () => ({
     tab: 0,
     // 查询证书
@@ -174,9 +180,5 @@ export default {
 }
 .m-col {
   max-width: 500px;
-}
-.dialog-bottom-transition-enter-active,
-.dialog-bottom-transition-leave-active {
-  transition: transform 0.2s ease-in-out;
 }
 </style>

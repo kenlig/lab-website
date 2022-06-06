@@ -3,16 +3,13 @@
     ><v-card flat tile class="indigo lighten-1 white--text text-right m-footer">
       <v-divider></v-divider>
       <v-container id="footer-container">
-        <v-card-text class="white--text">
+        <v-card-text class="white--text" style="user-select: none">
           <strong>
             Hubei Province Key Laboratory of<br />
             Intelligent Information Processing and<br />
             Real-time Industrial System
           </strong>
-          <br /><span
-            style="user-select: none"
-            @dblclick="this.$router.push({ name: 'manage' })"
-          >
+          <br /><span @dblclick="this.$router.push({ name: 'manage' })">
             &#169;&nbsp;{{ new Date().getFullYear() }}
           </span>
         </v-card-text>
