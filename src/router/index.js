@@ -21,6 +21,11 @@ const routes = [
       import(/* webpackChunkName: "cert" */ "../pages/CertPage.vue"),
   },
   {
+    path: "/management",
+    name: "manage",
+    component: () => import("../pages/ManagePage.vue"),
+  },
+  {
     path: "/news",
     name: "news",
     component: NewsPage,

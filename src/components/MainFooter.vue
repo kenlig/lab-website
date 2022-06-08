@@ -23,13 +23,13 @@
   width: 100%;
   padding-bottom: 0;
 }
+#footer-container {
+  padding-left: 0;
+  padding-right: 0;
+}
 @media screen and (max-width: 360px) {
   div strong br {
     display: none;
-  }
-  #footer-container {
-    padding-left: 0;
-    padding-right: 0;
   }
 }
 </style>

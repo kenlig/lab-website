@@ -1,5 +1,5 @@
 <template>
-  <v-row class="h-100" align="center" v-if="certs.length === 0">
+  <v-row class="w-100" align="center" v-if="users.length === 0">
     <v-col cols="12" align="center">
       <v-icon size="96" color="rgba(0, 0, 0, 0.2)"
         >mdi-alert-decagram-outline</v-icon
@@ -7,30 +7,35 @@
       <p class="pa-4" id="i-alert-text">内容查询为空</p>
     </v-col>
   </v-row>
-  <v-row v-else>
+  <v-row v-else class="ml-2">
+    <v-col cols="12" class="py-0">
+      <v-text-field
+        prepend-inner-icon="mdi-magnify"
+        label="模糊搜索"
+        placeholder="姓名"
+        variant="underlined"
+        hide-details="true"
+        clearable
+        v-model="searchText"
+      ></v-text-field>
+    </v-col>
     <v-col cols="12">
       <v-table>
         <thead>
           <tr>
-            <th class="m-table-header">证书名</th>
+            <th class="m-table-header">邮箱</th>
             <th class="m-table-header">姓名</th>
-            <th class="m-table-header">等级</th>
-            <th class="m-table-header">颁发日期</th>
-            <th class="m-table-header">证书编号</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="item in certs"
+            v-for="item in users"
             :key="item.id"
             v-ripple
             class="m-table-item"
           >
-            <td>{{ item.cert }}</td>
+            <td>{{ item.email }}</td>
             <td>{{ item.name }}</td>
-            <td>{{ item.level }}</td>
-            <td>{{ item.date }}</td>
-            <td>{{ item.id }}</td>
           </tr>
         </tbody>
       </v-table>
@@ -41,27 +46,19 @@
 <script>
 export default {
   data: () => ({
-    certs: [
+    searchText: "",
+    users: [
       {
-        cert: "XXX获奖证书",
+        email: "xxx@gmail.com",
         name: "怀瑾",
-        level: "一等奖",
-        date: "2022-06-01",
-        id: "9999999999",
       },
       {
-        cert: "XXX获奖证书",
-        name: "怀瑾",
-        level: "二等奖",
-        date: "2022-06-01",
-        id: "9999999999",
+        email: "xxx@gmail.com",
+        name: "鱼",
       },
       {
-        cert: "XXX获奖证书",
-        name: "怀瑾",
-        level: "一等奖",
-        date: "2022-06-01",
-        id: "9999999999",
+        email: "xxx@gmail.com",
+        name: "月",
       },
     ],
   }),
