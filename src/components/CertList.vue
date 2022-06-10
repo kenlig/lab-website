@@ -14,7 +14,6 @@
           <tr>
             <th class="m-table-header">证书名</th>
             <th class="m-table-header">姓名</th>
-            <th class="m-table-header">等级</th>
             <th class="m-table-header">颁发日期</th>
             <th class="m-table-header">证书编号</th>
           </tr>
@@ -25,10 +24,10 @@
             :key="item.id"
             v-ripple
             class="m-table-item"
+            @click="getImage(item.id)"
           >
-            <td>{{ item.cert }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.level }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.grantee_name }}</td>
             <td>{{ item.date }}</td>
             <td>{{ item.id }}</td>
           </tr>
@@ -36,35 +35,42 @@
       </v-table>
     </v-col>
   </v-row>
+  <v-overlay v-model="overlay" class="align-center justify-center">
+    <v-row style="width: 800px; max-width: 100vw">
+      <v-col cols="12" class="w-100">
+        <v-img :src="imageURL" ref="image" width="800" />
+      </v-col>
+    </v-row>
+  </v-overlay>
 </template>
 
 <script>
+import api from "../api";
+
 export default {
   data: () => ({
-    certs: [
-      {
-        cert: "XXX获奖证书",
-        name: "怀瑾",
-        level: "一等奖",
-        date: "2022-06-01",
-        id: "9999999999",
-      },
-      {
-        cert: "XXX获奖证书",
-        name: "怀瑾",
-        level: "二等奖",
-        date: "2022-06-01",
-        id: "9999999999",
-      },
-      {
-        cert: "XXX获奖证书",
-        name: "怀瑾",
-        level: "一等奖",
-        date: "2022-06-01",
-        id: "9999999999",
-      },
-    ],
+    certs: [],
+    overlay: false,
+    imageURL: "",
   }),
+  async mounted() {
+    this.certs = await api.getCerts();
+  },
+  methods: {
+    async getImage(id) {
+      try {
+        this.overlay = true;
+        const rs = await api.getCertImage(id);
+        let blob = new Blob([rs], { type: "image/png" });
+        let url = window.URL.createObjectURL(blob);
+        // this.$refs.image.src = url;
+        this.imageURL = url;
+      } catch (e) {
+        console.log(e);
+        this.$toast.error("获取图片失败");
+      }
+    },
+  },
 };
 </script>
 

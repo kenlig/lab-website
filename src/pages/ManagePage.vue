@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import api from "@/api.js";
 import UserCompo from "./Manager/UserCompo.vue";
 import GrantCompo from "./Manager/GrantCompo.vue";
 
@@ -58,17 +59,53 @@ export default {
   components: { UserCompo, GrantCompo },
   data: () => ({
     tab: "option-1",
-    authorized: true,
-    // authorized: false,
+    authorized: false,
+    passwd: "",
+    userInfo: {},
   }),
   methods: {
-    admin() {
+    async admin() {
       // request
-      this.authorized = true;
+      try {
+        const rs = await api.adminLogin(this.passwd);
+        localStorage.setItem("token", rs);
+        api.conf.headers.Authorization = `Bearer ${rs}`;
+        this.authorized = true;
+      } catch (e) {
+        this.$toast.error(e.message);
+      }
     },
     logout() {
       // remove auth token
+      localStorage.removeItem("token");
+      api.conf.headers.Authorization = "";
       this.authorized = false;
+    },
+  },
+  mounted() {
+    // check if the user is logged in
+    const token = localStorage.getItem("token");
+    if (token) {
+      api.conf.headers.Authorization = `Bearer ${token}`;
+      this.authorized = true;
+    }
+  },
+  watch: {
+    async authorized(val) {
+      if (val) {
+        try {
+          const rs = await api.getUserInfo();
+          this.userInfo = rs;
+          if (rs.id !== "admin") {
+            this.authorized = false;
+            this.$toast.warning("无权限访问");
+          }
+        } catch (e) {
+          this.authorized = false;
+          localStorage.removeItem("token");
+          this.$toast.error("登录过期");
+        }
+      }
     },
   },
 };

@@ -1,13 +1,5 @@
 <template>
-  <v-row class="w-100" align="center" v-if="users.length === 0">
-    <v-col cols="12" align="center">
-      <v-icon size="96" color="rgba(0, 0, 0, 0.2)"
-        >mdi-alert-decagram-outline</v-icon
-      >
-      <p class="pa-4" id="i-alert-text">内容查询为空</p>
-    </v-col>
-  </v-row>
-  <v-row v-else class="ml-2">
+  <v-row class="ml-2">
     <v-col cols="12" class="py-0">
       <v-text-field
         prepend-inner-icon="mdi-magnify"
@@ -17,13 +9,24 @@
         hide-details="true"
         clearable
         v-model="searchText"
+        @keyup.enter="search"
       ></v-text-field>
     </v-col>
+  </v-row>
+  <v-row class="w-100 my-5" align="center" v-if="users.length === 0">
+    <v-col cols="12" align="center">
+      <v-icon size="96" color="rgba(0, 0, 0, 0.2)"
+        >mdi-alert-decagram-outline</v-icon
+      >
+      <p class="pa-4" id="i-alert-text">内容查询为空</p>
+    </v-col>
+  </v-row>
+  <v-row v-else class="ml-2">
     <v-col cols="12">
       <v-table>
         <thead>
           <tr>
-            <th class="m-table-header">邮箱</th>
+            <th class="m-table-header">ID</th>
             <th class="m-table-header">姓名</th>
           </tr>
         </thead>
@@ -34,7 +37,7 @@
             v-ripple
             class="m-table-item"
           >
-            <td>{{ item.email }}</td>
+            <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
           </tr>
         </tbody>
@@ -44,24 +47,36 @@
 </template>
 
 <script>
+import api from "@/api";
+
 export default {
   data: () => ({
     searchText: "",
-    users: [
-      {
-        email: "xxx@gmail.com",
-        name: "怀瑾",
-      },
-      {
-        email: "xxx@gmail.com",
-        name: "鱼",
-      },
-      {
-        email: "xxx@gmail.com",
-        name: "月",
-      },
-    ],
+    users: [],
   }),
+  methods: {
+    async search() {
+      if (this.searchText === "") {
+        this.allUsers();
+        return;
+      }
+      try {
+        this.users = await api.searchUser(this.searchText);
+      } catch (error) {
+        this.$toast.error(error.message);
+      }
+    },
+    async allUsers() {
+      try {
+        this.users = await api.getAllUsers();
+      } catch (e) {
+        this.$toast.error(e.message);
+      }
+    },
+  },
+  mounted() {
+    this.allUsers();
+  },
 };
 </script>
 

@@ -19,13 +19,13 @@
                 v-model="certID"
                 v-on:keyup.enter="submit"
               ></v-text-field>
-              <v-btn
+              <!-- <v-btn
                 variant="contained-text"
                 size="large"
                 class="float-right mt-4"
                 @click="submit"
                 >提交
-              </v-btn>
+              </v-btn> -->
             </v-col>
           </v-row>
         </v-window-item>
@@ -38,6 +38,7 @@
                 prepend-inner-icon="mdi-account"
                 hide-details
                 clearable
+                v-on:keyup.enter="login"
                 v-model="userID"
               ></v-text-field>
               <v-text-field
@@ -50,13 +51,13 @@
                 v-model="passwd"
                 v-on:keyup.enter="login"
               ></v-text-field>
-              <v-btn
+              <!-- <v-btn
                 variant="contained-text"
                 size="large"
                 class="float-right mt-4"
                 @click="login"
-                >登录</v-btn
-              >
+                >登录
+              </v-btn> -->
             </v-col>
           </v-row>
         </v-window-item>
@@ -69,9 +70,12 @@
       <v-banner lines="one" style="user-select: none">
         <template v-slot:text>
           <v-icon class="mr-1">mdi-account-circle</v-icon>
-          欢迎！#用户名。
+          <b>
+            {{ userInfo ? `欢迎！${userInfo.name}同学` : "用户名未获取到" }}
+          </b>
         </template>
         <template v-slot:actions>
+          <v-btn @click="changePassword"> 更改密码 </v-btn>
           <v-btn @click="logout"> 登出 </v-btn>
         </template>
       </v-banner>
@@ -106,7 +110,7 @@
                   <td>
                     <b>{{ item.text }}</b>
                   </td>
-                  <td>{{ item.value }}</td>
+                  <td>{{ searchResult[item.key] }}</td>
                 </tr>
               </tbody>
             </v-table>
@@ -125,6 +129,7 @@
 
 <script>
 import CertList from "@/components/CertList.vue";
+import api from "../api";
 
 export default {
   components: { CertList },
@@ -135,41 +140,81 @@ export default {
     overlay: false,
     loading: false,
     details: [
-      { text: "证书名", value: "XXX获奖证书", key: "cert" },
-      { text: "姓名", value: "怀瑾", key: "name" },
-      { text: "等级", value: "一等奖", key: "level" },
-      { text: "颁发日期", value: "2022-06-01", key: "date" },
-      { text: "证书编号", value: "9999999999", key: "id" },
+      { text: "证书名", key: "description" },
+      { text: "姓名", key: "grantee_name" },
+      { text: "颁发日期", key: "date" },
+      { text: "证书编号", key: "id" },
     ],
+    searchResult: {},
     // 登录部分
     userID: "",
     passwd: "",
     authorized: false,
+    userInfo: {},
   }),
   methods: {
-    submit() {
+    async submit() {
       if (this.certID) {
         this.loading = true;
         this.overlay = true;
-        // query backend
-        // if not valid cert this.overlay = false; show alert
-        this.loading = false;
+        try {
+          const data = await api.lookup(this.certID);
+          this.searchResult = data;
+          this.loading = false;
+        } catch (e) {
+          this.overlay = false;
+          this.$toast.warning(e.message);
+        }
       }
     },
-    login() {
+    async login() {
       if (this.userID && this.passwd) {
         this.loading = true;
         this.overlay = true;
-        // after query if valid
-        this.overlay = false;
-        this.authorized = true;
+        try {
+          const rs = await api.login(this.userID, this.passwd);
+          // login succeed
+          localStorage.setItem("token", rs);
+          api.conf.headers.Authorization = `Bearer ${rs}`;
+          this.authorized = true;
+          this.overlay = false;
+        } catch (e) {
+          this.overlay = false;
+          this.$toast.error("登陆失败");
+        }
       }
     },
-    logout() {},
+    logout() {
+      // remove auth token
+      localStorage.removeItem("token");
+      api.conf.headers.Authorization = "";
+      this.authorized = false;
+    },
+    changePassword() {
+      this.$toast.warning("暂未实现");
+    },
   },
   mounted() {
-    // if logged in:
-    // this.authorized = true;
+    if (localStorage.getItem("token")) {
+      api.conf.headers.Authorization = `Bearer ${localStorage.getItem(
+        "token"
+      )}`;
+      this.authorized = true;
+    }
+  },
+  watch: {
+    async authorized(val) {
+      if (val) {
+        try {
+          const rs = await api.getUserInfo();
+          this.userInfo = rs;
+        } catch (e) {
+          this.authorized = false;
+          localStorage.removeItem("token");
+          this.$toast.error("登录过期");
+        }
+      }
+    },
   },
 };
 </script>
