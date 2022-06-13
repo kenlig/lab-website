@@ -209,8 +209,7 @@ export default {
           const rs = await api.getUserInfo();
           this.userInfo = rs;
         } catch (e) {
-          this.authorized = false;
-          localStorage.removeItem("token");
+          this.logout();
           this.$toast.error("登录过期");
         }
       }

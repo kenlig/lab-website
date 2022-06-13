@@ -42,7 +42,8 @@ class Api {
   };
 
   adminLogin = async (password) => {
-    const rs = await this.r.post("/admin/login", { id: "admin", password });
+    // only one admin account
+    const rs = await this.r.post("/user/login", { id: "admin", password });
     return rs.data;
   };
 

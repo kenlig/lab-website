@@ -36,6 +36,7 @@
             :key="item.id"
             v-ripple
             class="m-table-item"
+            @click="openUserDetail(item.id)"
           >
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
@@ -44,15 +45,34 @@
       </v-table>
     </v-col>
   </v-row>
+  <!-- <v-dialog v-model="dialog">
+    <v-card><cert-control></cert-control></v-card>
+  </v-dialog> -->
+  <v-row justify="space-around">
+    <v-col cols="auto">
+      <v-dialog transition="dialog-bottom-transition" v-model="dialog">
+        <v-card>
+          <v-toolbar color="primary">Opening from the bottom</v-toolbar>
+          <cert-control></cert-control>
+        </v-card>
+      </v-dialog>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
 import api from "@/api";
+import CertControl from "@/pages/Manager/CertControl";
 
 export default {
+  components: {
+    CertControl,
+  },
   data: () => ({
     searchText: "",
     users: [],
+    timeout: null,
+    dialog: false,
   }),
   methods: {
     async search() {
@@ -73,9 +93,21 @@ export default {
         this.$toast.error(e.message);
       }
     },
+    async openUserDetail(id) {
+      this.dialog = true;
+    },
   },
   mounted() {
     this.allUsers();
+  },
+  watch: {
+    searchText(newValue, oldValue) {
+      // 延迟搜索
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        this.search();
+      }, 500);
+    },
   },
 };
 </script>

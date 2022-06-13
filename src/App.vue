@@ -126,4 +126,14 @@ header {
   background: rgb(255 255 255 / 66%) !important;
   backdrop-filter: saturate(200%) blur(10px);
 }
+@media screen and (min-width: 1920px) {
+  .v-container {
+    max-width: 1200px !important;
+  }
+}
+@media screen and (min-width: 1921px) {
+  .v-container {
+    max-width: 1800px;
+  }
+}
 </style>

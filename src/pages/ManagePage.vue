@@ -101,8 +101,7 @@ export default {
             this.$toast.warning("无权限访问");
           }
         } catch (e) {
-          this.authorized = false;
-          localStorage.removeItem("token");
+          this.logout();
           this.$toast.error("登录过期");
         }
       }
