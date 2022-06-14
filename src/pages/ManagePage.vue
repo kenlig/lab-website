@@ -58,7 +58,7 @@ import GrantCompo from "./Manager/GrantCompo.vue";
 export default {
   components: { UserCompo, GrantCompo },
   data: () => ({
-    tab: "option-1",
+    tab: "option-2",
     authorized: false,
     passwd: "",
     userInfo: {},
@@ -116,5 +116,8 @@ export default {
 }
 .m-col {
   max-width: 500px;
+}
+.v-field__clearable {
+  padding-right: 0.7rem;
 }
 </style>

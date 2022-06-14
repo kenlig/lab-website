@@ -57,18 +57,26 @@ class Api {
     return rs.data;
   };
 
-  // untested apis
   getTemplates = async () => {
     const rs = await this.r.get("/certificate/templates", this.conf);
     return rs.data;
   };
 
-  grantCert = async (id, templateId) => {
+  grantCert = async (id, templateId, description) => {
     const rs = await this.r.post(
       "/certificate/grant",
-      { id, templateId },
+      {
+        template_id: templateId,
+        grantee_id: id,
+        description,
+      },
       this.conf
     );
+    return rs.data;
+  };
+
+  register = async (id, name, password) => {
+    const rs = await this.r.post("/user/reg", { id, name, password });
     return rs.data;
   };
 }
