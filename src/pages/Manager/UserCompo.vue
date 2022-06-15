@@ -36,7 +36,7 @@
             :key="item.id"
             v-ripple
             class="m-table-item"
-            @click="openUserDetail(item.id)"
+            @click="openUserDetail(item)"
           >
             <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
@@ -45,15 +45,16 @@
       </v-table>
     </v-col>
   </v-row>
-  <!-- <v-dialog v-model="dialog">
-    <v-card><cert-control></cert-control></v-card>
-  </v-dialog> -->
   <v-row justify="space-around">
     <v-col cols="auto">
       <v-dialog transition="dialog-bottom-transition" v-model="dialog">
-        <v-card>
-          <v-toolbar color="primary">Opening from the bottom</v-toolbar>
-          <cert-control></cert-control>
+        <v-card id="dialog-card">
+          <v-toolbar color="primary"
+            ><span id="toolbar-title">{{
+              `${selectedUser.name} (${selectedUser.id})`
+            }}</span>
+          </v-toolbar>
+          <cert-control :id="selectedUser.id"></cert-control>
         </v-card>
       </v-dialog>
     </v-col>
@@ -73,6 +74,8 @@ export default {
     users: [],
     timeout: null,
     dialog: false,
+    title: "",
+    selectedUser: {},
   }),
   methods: {
     async search() {
@@ -93,8 +96,9 @@ export default {
         this.$toast.error(e.message);
       }
     },
-    async openUserDetail(id) {
+    async openUserDetail(user) {
       this.dialog = true;
+      this.selectedUser = user;
     },
   },
   mounted() {
@@ -122,5 +126,21 @@ export default {
 }
 .m-table-item {
   cursor: pointer;
+}
+#toolbar-title {
+  padding-left: 1rem;
+}
+#dialog-card {
+  min-width: 50vw;
+  min-height: 50vh;
+  overflow-x: hidden;
+  overflow-y: overlay;
+}
+.dialog-bottom-transition-enter-active,
+.dialog-bottom-transition-leave-active {
+  transition: transform 0.5s ease-in-out;
+}
+::-webkit-scrollbar {
+  width: 0px;
 }
 </style>

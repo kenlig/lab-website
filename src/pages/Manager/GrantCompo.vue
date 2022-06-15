@@ -169,7 +169,7 @@ export default {
       for (let index in this.uploaded) {
         const item = this.uploaded[index];
         try {
-          const res = await api.register(item.id, item.name, "000000");
+          const res = await api.register(item.id, item.name, "000000"); // default password
           this.uploaded[index].progress = 50; // 注册新用户
         } catch (e) {
           this.uploaded[index].progress = 50; // 用户已注册

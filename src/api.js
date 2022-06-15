@@ -2,9 +2,9 @@ import axios from "axios";
 
 class Api {
   constructor() {
-    this.base = "http://localhost:8000";
+    // this.base = "http://localhost:8000";
+    this.base = "http://192.168.233.156:8000/api";
     this.r = axios.create({
-      // baseURL: "/api",
       baseURL: this.base,
       // withCredentials: true,
     });
@@ -77,6 +77,11 @@ class Api {
 
   register = async (id, name, password) => {
     const rs = await this.r.post("/user/reg", { id, name, password });
+    return rs.data;
+  };
+
+  getUserCerts = async (id) => {
+    const rs = await this.r.get(`/certificate/user/${id}`, this.conf);
     return rs.data;
   };
 }

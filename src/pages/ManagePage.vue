@@ -58,7 +58,7 @@ import GrantCompo from "./Manager/GrantCompo.vue";
 export default {
   components: { UserCompo, GrantCompo },
   data: () => ({
-    tab: "option-2",
+    tab: "option-1",
     authorized: false,
     passwd: "",
     userInfo: {},

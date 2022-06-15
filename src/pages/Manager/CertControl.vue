@@ -16,6 +16,7 @@
             <th class="m-table-header">姓名</th>
             <th class="m-table-header">颁发日期</th>
             <th class="m-table-header">证书编号</th>
+            <th class="m-table-header">操作</th>
           </tr>
         </thead>
         <tbody>
@@ -24,12 +25,19 @@
             :key="item.id"
             v-ripple
             class="m-table-item"
-            @click="getImage(item.id)"
           >
             <td>{{ item.description }}</td>
             <td>{{ item.grantee_name }}</td>
             <td>{{ item.date }}</td>
             <td>{{ item.id }}</td>
+            <td>
+              <v-btn variant="content-flat" @click="manage(item.id)"
+                >管理</v-btn
+              >
+              <v-btn variant="content-flat" @click="getImage(item.id)"
+                >查看证书</v-btn
+              >
+            </td>
           </tr>
         </tbody>
       </v-table>
@@ -48,13 +56,14 @@
 import api from "@/api";
 
 export default {
+  props: ["id"],
   data: () => ({
     certs: [],
     overlay: false,
     imageURL: "",
   }),
   async mounted() {
-    this.certs = await api.getCerts();
+    this.certs = await api.getUserCerts(this.id);
   },
   methods: {
     async getImage(id) {
@@ -69,6 +78,10 @@ export default {
         console.log(e);
         this.$toast.error("获取图片失败");
       }
+    },
+    async manage(id) {
+      // manage cert details
+      this.$toast.warning("该功能暂未实现");
     },
   },
 };
