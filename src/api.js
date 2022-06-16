@@ -3,10 +3,9 @@ import axios from "axios";
 class Api {
   constructor() {
     // this.base = "http://localhost:8000";
-    this.base = "http://192.168.233.156:8000/api";
+    this.base = "https://mofu.ltd/lab/api";
     this.r = axios.create({
       baseURL: this.base,
-      // withCredentials: true,
     });
     this.conf = {
       headers: { Authorization: "" },
