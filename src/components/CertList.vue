@@ -58,6 +58,7 @@ export default {
   },
   methods: {
     async getImage(id) {
+      this.imageURL = "";
       try {
         this.overlay = true;
         const rs = await api.getCertImage(id);

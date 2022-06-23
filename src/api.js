@@ -2,7 +2,7 @@ import axios from "axios";
 
 class Api {
   constructor() {
-    // this.base = "http://localhost:8000";
+    // this.base = "/api";
     this.base = "https://mofu.ltd/lab/api";
     this.r = axios.create({
       baseURL: this.base,
@@ -81,6 +81,28 @@ class Api {
 
   getUserCerts = async (id) => {
     const rs = await this.r.get(`/certificate/user/${id}`, this.conf);
+    return rs.data;
+  };
+
+  changePassword = async (user, password) => {
+    const rs = await this.r.put(
+      `/user/${user.id}`,
+      { ...user, password },
+      this.conf
+    );
+    return rs.data;
+  };
+
+  changeCertInfo = async (id, templateId, description, certID) => {
+    const rs = await this.r.put(
+      `/certificate/grant/${certID}`,
+      {
+        grantee_id: id,
+        template_id: templateId,
+        description,
+      },
+      this.conf
+    );
     return rs.data;
   };
 }

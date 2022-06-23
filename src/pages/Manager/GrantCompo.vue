@@ -35,9 +35,7 @@
         hide-details="true"
         density="compact"
       ></v-textarea>
-      <v-btn block variant="contained-flat" class="mt-4" @click="process"
-        >批量颁发</v-btn
-      >
+      <v-btn block variant="flat" class="mt-4" @click="process">批量颁发</v-btn>
       <v-divider class="mt-4"></v-divider>
       <v-table>
         <thead>
@@ -91,6 +89,7 @@ export default {
     },
     value() {
       // 这里的value是v-select的值
+      if (!this.selected) return "";
       const v = this.templates.find((item) => {
         return item.name === this.selected;
       });

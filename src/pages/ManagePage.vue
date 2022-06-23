@@ -22,6 +22,7 @@
           以管理员身份登录
         </template>
         <template v-slot:actions>
+          <v-btn @click="changePassword"> 更改密码 </v-btn>
           <v-btn @click="logout"> 登出 </v-btn>
         </template>
       </v-banner>
@@ -48,20 +49,26 @@
       </div>
     </v-col>
   </v-row>
+  <change-passwd
+    :user="userInfo"
+    v-model:dialog="showChangePasswd"
+  ></change-passwd>
 </template>
 
 <script>
 import api from "@/api.js";
 import UserCompo from "./Manager/UserCompo.vue";
 import GrantCompo from "./Manager/GrantCompo.vue";
+import ChangePasswd from "@/components/ChangePasswd.vue";
 
 export default {
-  components: { UserCompo, GrantCompo },
+  components: { UserCompo, GrantCompo, ChangePasswd },
   data: () => ({
     tab: "option-1",
     authorized: false,
     passwd: "",
     userInfo: {},
+    showChangePasswd: false,
   }),
   methods: {
     async admin() {
@@ -80,6 +87,9 @@ export default {
       localStorage.removeItem("token");
       api.conf.headers.Authorization = "";
       this.authorized = false;
+    },
+    changePassword() {
+      this.showChangePasswd = true;
     },
   },
   mounted() {

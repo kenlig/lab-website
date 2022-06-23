@@ -125,14 +125,19 @@
       </v-col>
     </v-row>
   </v-overlay>
+  <change-passwd
+    :user="userInfo"
+    v-model:dialog="showChangePasswd"
+  ></change-passwd>
 </template>
 
 <script>
 import CertList from "@/components/CertList.vue";
+import ChangePasswd from "@/components/ChangePasswd.vue";
 import api from "../api";
 
 export default {
-  components: { CertList },
+  components: { CertList, ChangePasswd },
   data: () => ({
     tab: 0,
     // 查询证书
@@ -151,6 +156,7 @@ export default {
     passwd: "",
     authorized: false,
     userInfo: {},
+    showChangePasswd: false,
   }),
   methods: {
     async submit() {
@@ -191,7 +197,7 @@ export default {
       this.authorized = false;
     },
     changePassword() {
-      this.$toast.warning("暂未实现");
+      this.showChangePasswd = true;
     },
   },
   mounted() {

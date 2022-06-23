@@ -10,6 +10,7 @@
         clearable
         v-model="searchText"
         @keyup.enter="search"
+        aria-autocomplete="false"
       ></v-text-field>
     </v-col>
   </v-row>
@@ -47,7 +48,7 @@
   </v-row>
   <v-row justify="space-around">
     <v-col cols="auto">
-      <v-dialog transition="dialog-bottom-transition" v-model="dialog">
+      <v-dialog v-model="dialog">
         <v-card id="dialog-card">
           <v-toolbar color="primary"
             ><span id="toolbar-title">{{
@@ -132,13 +133,10 @@ export default {
 }
 #dialog-card {
   min-width: 50vw;
+  max-width: 96vw;
   min-height: 50vh;
   overflow-x: hidden;
   overflow-y: overlay;
-}
-.dialog-bottom-transition-enter-active,
-.dialog-bottom-transition-leave-active {
-  transition: transform 0.5s ease-in-out;
 }
 ::-webkit-scrollbar {
   width: 0px;
