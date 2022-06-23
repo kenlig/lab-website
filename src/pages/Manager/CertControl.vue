@@ -39,10 +39,19 @@
       </v-table>
     </v-col>
   </v-row>
-  <v-overlay v-model="overlay" class="align-center justify-center">
+  <v-overlay
+    v-model="overlay"
+    class="align-center justify-center"
+    @click="overlay = !overlay"
+  >
     <v-row style="width: 800px; max-width: 100vw">
       <v-col cols="12" class="w-100">
-        <v-img :src="imageURL" ref="image" width="800" class="py-2" />
+        <v-img
+          :src="imageURL"
+          ref="image"
+          width="800"
+          class="py-2 m-cert-image"
+        />
       </v-col>
     </v-row>
   </v-overlay>
@@ -177,5 +186,8 @@ export default {
 }
 .m-table-item {
   cursor: pointer;
+}
+.m-cert-image {
+  height: 100vh;
 }
 </style>

@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     async submit() {
+      if (!this.passwd) return;
       try {
         const rs = await api.changePassword(this.user, this.passwd);
         this.$toast.success("更改成功");
